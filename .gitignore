@@ -1,0 +1,20 @@
+# React
+frontend/node_modules/
+frontend/dist/
+
+# Python virtual environments
+.venv/
+backend/venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Generated files
+backend/uploads/
+backend/reports/
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
