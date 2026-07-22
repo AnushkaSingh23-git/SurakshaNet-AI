@@ -37,6 +37,8 @@ def analyze_website(data: URLRequest):
 @router.post("/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
 
+    os.makedirs("uploads", exist_ok=True)
+
     file_path = f"uploads/{file.filename}"
 
     with open(file_path, "wb") as buffer:
@@ -48,8 +50,8 @@ async def analyze_image(file: UploadFile = File(...)):
 
     result["extracted_text"] = extracted_text
     result["image"] = f"https://surakshanet-ai.onrender.com/uploads/{file.filename}"
-    return result
 
+    return result
 
 @router.post("/generate-pdf")
 async def generate_pdf_report(report: dict):
