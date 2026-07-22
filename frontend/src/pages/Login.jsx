@@ -13,7 +13,7 @@ function Login() {
     localStorage.setItem("isLoggedIn", "true");
 
     if (email.includes("@") && email.includes(".") && password.length >= 6) {
-      navigate("/police-dashboard");
+      navigate("/dashboard");
     } else {
       alert("Enter a valid email and password");
     }
