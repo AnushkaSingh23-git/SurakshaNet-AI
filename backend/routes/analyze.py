@@ -34,7 +34,7 @@ def analyze_website(data: URLRequest):
     return result
 
 
-@@router.post("/analyze-image")
+@router.post("/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
 
     try:
