@@ -3,7 +3,7 @@
 # uvicorn app:app --reload
 
 
-
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.report import router as report_router
@@ -17,6 +17,8 @@ app = FastAPI(
     title="SurakshaNet AI",
     version="1.0"
 )
+
+os.makedirs("uploads", exist_ok=True)
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
