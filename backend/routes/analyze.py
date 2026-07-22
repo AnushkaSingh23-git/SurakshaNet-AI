@@ -37,21 +37,34 @@ def analyze_website(data: URLRequest):
 @router.post("/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
 
-    os.makedirs("uploads", exist_ok=True)
+    try:
+        print("IMAGE RECEIVED:", file.filename)
 
-    file_path = f"uploads/{file.filename}"
+        os.makedirs("uploads", exist_ok=True)
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+        file_path = f"uploads/{file.filename}"
 
-    extracted_text = extract_text(file_path)
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
 
-    result = analyze_text(extracted_text)
+        print("FILE SAVED:", file_path)
 
-    result["extracted_text"] = extracted_text
-    result["image"] = f"https://surakshanet-ai.onrender.com/uploads/{file.filename}"
+        extracted_text = extract_text(file_path)
 
-    return result
+        print("OCR TEXT:", extracted_text)
+
+        result = analyze_text(extracted_text)
+
+        result["extracted_text"] = extracted_text
+        result["image"] = f"https://surakshanet-ai.onrender.com/uploads/{file.filename}"
+
+        return result
+
+    except Exception as e:
+        print("IMAGE ERROR:", str(e))
+        return {
+            "error": str(e)
+        }
 
 @router.post("/generate-pdf")
 async def generate_pdf_report(report: dict):
