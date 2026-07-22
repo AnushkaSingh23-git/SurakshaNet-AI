@@ -34,7 +34,7 @@ def analyze_website(data: URLRequest):
     return result
 
 
-@router.post("/analyze-image")
+@@router.post("/analyze-image")
 async def analyze_image(file: UploadFile = File(...)):
 
     try:
@@ -62,6 +62,7 @@ async def analyze_image(file: UploadFile = File(...)):
 
     except Exception as e:
         print("IMAGE ERROR:", str(e))
+
         return {
             "error": str(e)
         }

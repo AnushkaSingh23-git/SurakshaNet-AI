@@ -10,13 +10,19 @@ function InputPanel({ setAnalysisResult, setLoading }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+  const file = e.target.files[0];
 
-    if (file) {
-      setSelectedFile(file);
-      setSelectedImage(URL.createObjectURL(file));
+  if (file) {
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image size should be less than 5MB");
+      return;
     }
-  };
+
+    setSelectedFile(file);
+    setSelectedImage(URL.createObjectURL(file));
+  }
+};
 
   const handleAnalyze = async () => {
     setLoading(true);
@@ -37,7 +43,8 @@ function InputPanel({ setAnalysisResult, setLoading }) {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          },
+            timeout: 120000,
+          }
         );
       }
 
