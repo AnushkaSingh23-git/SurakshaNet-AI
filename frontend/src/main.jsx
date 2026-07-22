@@ -8,5 +8,5 @@ createRoot(document.getElementById("root")).render(
   <>
     <App />
     <Toaster position="top-right" />
-  </>
+  </>,
 );

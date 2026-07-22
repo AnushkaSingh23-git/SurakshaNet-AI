@@ -1,9 +1,5 @@
 import { useMemo } from "react";
-import ReactFlow, {
-  Background,
-  Controls,
-  MiniMap,
-} from "reactflow";
+import ReactFlow, { Background, Controls, MiniMap } from "reactflow";
 import "reactflow/dist/style.css";
 
 const nodes = [
@@ -64,8 +60,7 @@ const nodes = [
   },
 ];
 
-
-const edges =[
+const edges = [
   {
     id: "e1-2",
     source: "1",
@@ -100,28 +95,20 @@ const edges =[
 
 function NetworkGraph() {
   return (
-  <div className="min-h-screen bg-gray-100 p-8 " >
+    <div className="min-h-screen bg-gray-100 p-8 ">
+      <h1 className="text-4xl font-bold mb-8">
+        🌐 Fraud Network Investigation
+      </h1>
 
-    <h1 className="text-4xl font-bold mb-8">
-      🌐 Fraud Network Investigation
-    </h1>
-
-    <div className="bg-white rounded-xl shadow-xl h-[700px]">
-
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        fitView
-      >
-        <MiniMap />
-        <Controls />
-        <Background />
-      </ReactFlow>
-
+      <div className="bg-white rounded-xl shadow-xl h-[700px]">
+        <ReactFlow nodes={nodes} edges={edges} fitView>
+          <MiniMap />
+          <Controls />
+          <Background />
+        </ReactFlow>
+      </div>
     </div>
-
-  </div>
-);
+  );
 }
 
 export default NetworkGraph;

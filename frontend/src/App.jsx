@@ -67,15 +67,9 @@ function AppContent() {
 
           <Route path="/role-selection" element={<RoleSelection />} />
 
-          <Route
-            path="/citizen-signup"
-            element={<CitizenSignup />}
-          />
+          <Route path="/citizen-signup" element={<CitizenSignup />} />
 
-          <Route
-            path="/citizen-login"
-            element={<CitizenLogin />}
-          />
+          <Route path="/citizen-login" element={<CitizenLogin />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

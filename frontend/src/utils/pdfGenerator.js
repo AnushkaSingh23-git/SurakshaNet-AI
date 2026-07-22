@@ -4,34 +4,28 @@ import autoTable from "jspdf-autotable";
 export const generatePdf = (analysisResult) => {
   const doc = new jsPDF();
 
-  const caseId =
-    "SN-" + new Date().getTime().toString().slice(-8);
+  const caseId = "SN-" + new Date().getTime().toString().slice(-8);
 
   const extractedData = {
-    phone:
-      analysisResult.phone?.length
-        ? analysisResult.phone.join(", ")
-        : "Not Found",
+    phone: analysisResult.phone?.length
+      ? analysisResult.phone.join(", ")
+      : "Not Found",
 
-    email:
-      analysisResult.email?.length
-        ? analysisResult.email.join(", ")
-        : "Not Found",
+    email: analysisResult.email?.length
+      ? analysisResult.email.join(", ")
+      : "Not Found",
 
-    website:
-      analysisResult.website?.length
-        ? analysisResult.website.join(", ")
-        : "Not Found",
+    website: analysisResult.website?.length
+      ? analysisResult.website.join(", ")
+      : "Not Found",
 
-    upi:
-      analysisResult.upi?.length
-        ? analysisResult.upi.join(", ")
-        : "Not Found",
+    upi: analysisResult.upi?.length
+      ? analysisResult.upi.join(", ")
+      : "Not Found",
 
-    bank:
-      analysisResult.bank?.length
-        ? analysisResult.bank.join(", ")
-        : "Not Found",
+    bank: analysisResult.bank?.length
+      ? analysisResult.bank.join(", ")
+      : "Not Found",
   };
 
   // ===== HEADER =====
@@ -48,11 +42,7 @@ export const generatePdf = (analysisResult) => {
 
   doc.setFontSize(11);
 
-  doc.text(
-    "National Cyber Crime Intelligence Platform",
-    20,
-    24
-  );
+  doc.text("National Cyber Crime Intelligence Platform", 20, 24);
 
   doc.setTextColor(0);
 
@@ -63,30 +53,12 @@ export const generatePdf = (analysisResult) => {
 
     body: [
       ["Case ID", caseId],
-      [
-        "Generated",
-        new Date().toLocaleString(),
-      ],
-      [
-        "Officer",
-        "AI Investigation Engine",
-      ],
-      [
-        "Risk Level",
-        analysisResult.risk,
-      ],
-      [
-        "Risk Score",
-        `${analysisResult.score}%`,
-      ],
-      [
-        "Confidence",
-        `${analysisResult.confidence}%`,
-      ],
-      [
-        "Scam Type",
-        analysisResult.type,
-      ],
+      ["Generated", new Date().toLocaleString()],
+      ["Officer", "AI Investigation Engine"],
+      ["Risk Level", analysisResult.risk],
+      ["Risk Score", `${analysisResult.score}%`],
+      ["Confidence", `${analysisResult.confidence}%`],
+      ["Scam Type", analysisResult.type],
     ],
 
     theme: "grid",
@@ -99,7 +71,7 @@ export const generatePdf = (analysisResult) => {
 
   let y = doc.lastAutoTable.finalY + 12;
 
-    // ===== RISK ANALYSIS =====
+  // ===== RISK ANALYSIS =====
 
   doc.setFillColor(255, 245, 245);
 
@@ -115,42 +87,24 @@ export const generatePdf = (analysisResult) => {
 
   doc.setFontSize(12);
 
-  doc.text(
-    `Risk Level : ${analysisResult.risk}`,
-    25,
-    y + 15
-  );
+  doc.text(`Risk Level : ${analysisResult.risk}`, 25, y + 15);
 
-  doc.text(
-    `Risk Score : ${analysisResult.score}%`,
-    25,
-    y + 23
-  );
+  doc.text(`Risk Score : ${analysisResult.score}%`, 25, y + 23);
 
-  doc.text(
-    `Confidence : ${analysisResult.confidence}%`,
-    110,
-    y + 15
-  );
+  doc.text(`Confidence : ${analysisResult.confidence}%`, 110, y + 15);
 
-  doc.text(
-    `Scam Type : ${analysisResult.type}`,
-    110,
-    y + 23
-  );
+  doc.text(`Scam Type : ${analysisResult.type}`, 110, y + 23);
 
   y += 50;
 
   // ===== EXTRACTED EVIDENCE =====
 
   autoTable(doc, {
-
     startY: y,
 
     head: [["Extracted Evidence", "Value"]],
 
     body: [
-
       ["Phone", extractedData.phone],
 
       ["Email", extractedData.email],
@@ -160,24 +114,20 @@ export const generatePdf = (analysisResult) => {
       ["UPI ID", extractedData.upi],
 
       ["Bank", extractedData.bank],
-
     ],
 
     theme: "striped",
 
     headStyles: {
-
       fillColor: [0, 102, 204],
 
       textColor: 255,
-
     },
-
   });
 
   y = doc.lastAutoTable.finalY + 12;
 
-    // ===== SUSPICIOUS FINDINGS =====
+  // ===== SUSPICIOUS FINDINGS =====
 
   doc.setFontSize(16);
   doc.setTextColor(200, 0, 0);
@@ -213,10 +163,9 @@ export const generatePdf = (analysisResult) => {
 
   autoTable(doc, {
     startY: y,
-    body:
-      analysisResult.explanation?.map((item) => [item]) || [
-        ["No explanation available"],
-      ],
+    body: analysisResult.explanation?.map((item) => [item]) || [
+      ["No explanation available"],
+    ],
     theme: "plain",
   });
 
@@ -232,10 +181,9 @@ export const generatePdf = (analysisResult) => {
 
   autoTable(doc, {
     startY: y,
-    body:
-      analysisResult.recommendation?.map((item) => [item]) || [
-        ["No recommendation available"],
-      ],
+    body: analysisResult.recommendation?.map((item) => [item]) || [
+      ["No recommendation available"],
+    ],
     theme: "striped",
     headStyles: {
       fillColor: [0, 150, 0],
@@ -245,7 +193,7 @@ export const generatePdf = (analysisResult) => {
 
   y = doc.lastAutoTable.finalY + 15;
 
-    // ===== FOOTER =====
+  // ===== FOOTER =====
 
   if (y > 250) {
     doc.addPage();
@@ -260,18 +208,14 @@ export const generatePdf = (analysisResult) => {
   doc.setFontSize(10);
   doc.setTextColor(120);
 
-  doc.text(
-    `Generated on: ${new Date().toLocaleString()}`,
-    20,
-    y
-  );
+  doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, y);
 
   y += 7;
 
   doc.text(
     "Generated by SurakshaNet AI | National Cyber Crime Intelligence Platform",
     20,
-    y
+    y,
   );
 
   y += 7;
@@ -279,16 +223,12 @@ export const generatePdf = (analysisResult) => {
   doc.text(
     "This report is AI-generated and intended for investigation assistance only.",
     20,
-    y
+    y,
   );
 
   y += 7;
 
-  doc.text(
-    "Cyber Helpline: 1930 | https://cybercrime.gov.in",
-    20,
-    y
-  );
+  doc.text("Cyber Helpline: 1930 | https://cybercrime.gov.in", 20, y);
 
   doc.save(`SurakshaNet_Report_${caseId}.pdf`);
 };

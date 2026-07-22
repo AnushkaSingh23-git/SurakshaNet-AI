@@ -2,16 +2,15 @@ import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 function Heatmap() {
-
   const hotspots = [
     {
       city: "Delhi",
-      position: [28.6139, 77.2090],
+      position: [28.6139, 77.209],
       reports: 18,
     },
     {
       city: "Mumbai",
-      position: [19.0760, 72.8777],
+      position: [19.076, 72.8777],
       reports: 14,
     },
     {
@@ -31,32 +30,26 @@ function Heatmap() {
     },
     {
       city: "Hyderabad",
-      position: [17.3850, 78.4867],
+      position: [17.385, 78.4867],
       reports: 9,
     },
   ];
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 ">
-
       <h1 className="text-4xl font-bold mb-8">
         🗺 National Cyber Crime Heatmap
       </h1>
 
       <div className="bg-white rounded-xl shadow-lg p-4">
-
         <MapContainer
           center={[22.9734, 78.6569]}
           zoom={5}
           style={{ height: "700px", width: "100%" }}
         >
-
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
           {hotspots.map((city) => (
-
             <CircleMarker
               key={city.city}
               center={city.position}
@@ -67,20 +60,14 @@ function Heatmap() {
                 fillOpacity: 0.6,
               }}
             >
-
               <Popup>
                 <h2 className="font-bold">{city.city}</h2>
                 <p>Reports: {city.reports}</p>
               </Popup>
-
             </CircleMarker>
-
           ))}
-
         </MapContainer>
-
       </div>
-
     </div>
   );
 }

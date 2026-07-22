@@ -26,10 +26,7 @@ function CitizenSignup() {
       return;
     }
 
-    localStorage.setItem(
-      "citizen",
-      JSON.stringify(form)
-    );
+    localStorage.setItem("citizen", JSON.stringify(form));
 
     alert("Account Created Successfully");
 
@@ -38,15 +35,11 @@ function CitizenSignup() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-blue-900 flex justify-center items-center p-6">
-
       <form
         onSubmit={handleSignup}
         className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md"
       >
-
-        <h1 className="text-3xl font-bold text-center">
-          👤 Citizen Sign Up
-        </h1>
+        <h1 className="text-3xl font-bold text-center">👤 Citizen Sign Up</h1>
 
         <p className="text-center text-gray-500 mt-2">
           Create your SurakshaNet account
@@ -92,9 +85,7 @@ function CitizenSignup() {
           required
         />
 
-        <button
-          className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold"
-        >
+        <button className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold">
           Create Account
         </button>
 
@@ -107,9 +98,7 @@ function CitizenSignup() {
             Login
           </Link>
         </p>
-
       </form>
-
     </div>
   );
 }
