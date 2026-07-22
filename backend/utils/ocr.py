@@ -1,24 +1,11 @@
-import easyocr
+import pytesseract
 
-reader = None
-
-def get_reader():
-    global reader
-
-    if reader is None:
-        reader = easyocr.Reader(['en'])
-
-    return reader
+from PIL import Image
 
 
 def extract_text(image_path):
-    reader = get_reader()
+    img = Image.open(image_path)
 
-    result = reader.readtext(image_path)
+    text = pytesseract.image_to_string(img)
 
-    extracted_text = ""
-
-    for item in result:
-        extracted_text += item[1] + " "
-
-    return extracted_text.strip()
+    return text.strip()
