@@ -47,7 +47,7 @@ async def analyze_image(file: UploadFile = File(...)):
     result = analyze_text(extracted_text)
 
     result["extracted_text"] = extracted_text
-    result["image"] = f"http://127.0.0.1:8000/uploads/{file.filename}"
+    result["image"] = f"https://surakshanet-ai.onrender.com/uploads/{file.filename}"
     return result
 
 

@@ -31,7 +31,7 @@ function InputPanel({ setAnalysisResult, setLoading }) {
         formData.append("file", selectedFile);
 
         response = await axios.post(
-          "http://127.0.0.1:8000/analyze-image",
+          "https://surakshanet-ai.onrender.com/analyze-image",
           formData,
           {
             headers: {
@@ -43,14 +43,14 @@ function InputPanel({ setAnalysisResult, setLoading }) {
 
       // Text Analysis
       else if (mode === "text") {
-        response = await axios.post("http://127.0.0.1:8000/analyze", {
+        response = await axios.post("https://surakshanet-ai.onrender.com/analyze", {
           message,
         });
       }
 
       // URL Analysis
       else {
-        response = await axios.post("http://127.0.0.1:8000/analyze-url", {
+        response = await axios.post("https://surakshanet-ai.onrender.com/analyze-url", {
           url,
         });
       }

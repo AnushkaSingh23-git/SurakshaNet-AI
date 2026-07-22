@@ -21,7 +21,7 @@ function ResultPanel({ analysisResult, loading }) {
 
     try {
       console.log("Analysis Result:", analysisResult);
-      await axios.post("http://127.0.0.1:8000/report", {
+      await axios.post("https://surakshanet-ai.onrender.com/report", {
         ...analysisResult,
         city: "Unknown",
         status: "Active",
@@ -37,7 +37,7 @@ function ResultPanel({ analysisResult, loading }) {
   const downloadReport = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/generate-pdf",
+        "https://surakshanet-ai.onrender.com/generate-pdf",
         analysisResult,
         {
           responseType: "blob",
